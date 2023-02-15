@@ -1,0 +1,69 @@
+.text {
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.heading {
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Navbar */
+
+nav {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.4) 77.08%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 10;
+}
+
+.logo-name {
+  font-family: 'Redressed', cursive;
+  font-weight: 400;
+  font-size: 58px;
+  color: #ffffff;
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.nav-item .nav-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  line-height: 28px;
+  color: #ffffff;
+}
+
+.nav-item .nav-link.active {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+/* Footer  */
+
+footer {
+  background-color: #384431;
+}
+
+footer .text {
+  font-size: 36px;
+}
+
+/* Welcome */
+
+.collection-welcome {
+  padding: 54px 0;
+  background-color: #384431;
+}
+
+.collection-welcome h2 {
+  text-align: center;
+  font-size: 60px;
+}

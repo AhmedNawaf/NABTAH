@@ -1,0 +1,53 @@
+header {
+  background-image: url(../assets/bg-3\ 1.png);
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  position: relative;
+}
+
+/* Hero section */
+
+.hero {
+  position: absolute;
+  top: 20%;
+  width: 100%;
+}
+
+.intro {
+  background-color: rgba(11, 30, 0, 0.81);
+  border-radius: 3px;
+  padding: 99px 64px;
+}
+
+.intro .text {
+  font-size: 33px;
+}
+
+/* Products section */
+
+.products-showcase {
+  padding: 0 2rem;
+}
+
+.products-showcase .heading {
+  font-weight: 400;
+  font-size: 45px;
+  padding: 1rem 0;
+}
+
+.products-showcase:nth-child(1) {
+  background-color: #6b6399;
+}
+
+.products-showcase:nth-child(2) {
+  background-color: #5a7b46;
+}
+
+.products-showcase:nth-child(3) {
+  background-color: #7a4671;
+}
+
+.products-showcase:nth-child(4) {
+  background-color: #766545;
+}
