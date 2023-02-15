@@ -1,0 +1,118 @@
+{
+  "products": [
+    {
+      "name": "Bougainvillea",
+      "price": 29.95,
+      "description": "Flower tree",
+      "image": "first-plant-1.png",
+      "category": "Featured"
+    },
+    {
+      "name": "Coleus",
+      "price": 5.95,
+      "description": "Lamiaceae",
+      "image": "third-plant1.png",
+      "category": "Featured"
+    },
+    {
+      "name": "Bamboo",
+      "price": 9.95,
+      "image": "fourth-plant1.png",
+      "description": "Giant thorny",
+      "category": "Featured"
+    },
+    {
+      "name": "Orange Tree",
+      "image": "orange.png",
+      "price": 23.95,
+      "description": "Fruit",
+      "category": "Featured"
+    },
+    {
+      "name": "Adele Cactus",
+      "price": 9.95,
+      "description": "Cacti",
+      "image": "cacti1.png",
+      "category": "Cacti"
+    },
+    {
+      "name": "London Cactus",
+      "price": 2.95,
+      "description": "Cacti",
+      "image": "cacti2.png",
+      "category": "Cacti"
+    },
+    {
+      "name": "Leighton Cactus",
+      "price": 6.95,
+      "image": "cacti3.png",
+      "description": "Cacti",
+      "category": "Cacti"
+    },
+    {
+      "name": "Dori Succulent",
+      "image": "cacti4.png",
+      "price": 3.45,
+      "description": "Cacti",
+      "category": "Cacti"
+    },
+
+    {
+      "name": "Lavender",
+      "image": "flower-1.png",
+      "price": 13.45,
+      "description": "Flower",
+      "category": "Flowers"
+    },
+    {
+      "name": "Purple Tulip",
+      "image": "flower-2.png",
+      "price": 19.95,
+      "description": "Flower",
+      "category": "Flowers"
+    },
+    {
+      "name": "Yellow Daffodils",
+      "image": "flower-3.png",
+      "price": 4.95,
+      "description": "Flower",
+      "category": "Flowers"
+    },
+    {
+      "name": "Sun Flower",
+      "image": "flower-4.png",
+      "price": 23.95,
+      "description": "Flower",
+      "category": "Flowers"
+    },
+
+    {
+      "name": "Garden Dig Shovel",
+      "image": "tool-1.png",
+      "price": 3.45,
+      "description": "Tool",
+      "category": "Tools"
+    },
+    {
+      "name": "Garden Iron Fork",
+      "image": "tool-2.png",
+      "price": 3.45,
+      "description": "Tool",
+      "category": "Tools"
+    },
+    {
+      "name": "Garden Hand Rake",
+      "image": "tool-3.png",
+      "price": 4.95,
+      "description": "Tool",
+      "category": "Tools"
+    },
+    {
+      "name": "Garden Pickaxe",
+      "image": "tool-4.png",
+      "price": 23.95,
+      "description": "Tool",
+      "category": "Tools"
+    }
+  ]
+}
