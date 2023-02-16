@@ -31,3 +31,12 @@ Node.js, Express.js and MongoDB for the backend.
 
 ## Flowchart
 ![flow-chart](https://user-images.githubusercontent.com/74133458/219138762-900e3c5c-f435-4eff-ac26-f329b69fda37.png)
+
+## Notes
+You must make the client folder the root directory for the front-end.
+
+for the server folder, run the following
+``` bash
+npm install
+npm start
+```
