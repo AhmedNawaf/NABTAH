@@ -5,6 +5,7 @@ const productSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+      unique: true,
     },
     description: {
       type: String,
@@ -17,6 +18,10 @@ const productSchema = new mongoose.Schema(
     image: String,
     category: {
       type: String,
+      required: true,
+    },
+    quantity: {
+      type: Number,
       required: true,
     },
   },

@@ -244,6 +244,7 @@
             <!-- show user data -->
             <h4>Hello <span id="user-name"></span></h4>
             <h4>Your email: <span id="user-email"></span></h4>
+            <h4>Your role: <span id="user-role"></span></h4>
             <button id="logout" type="button" class="btn btn-danger">
               Logout
             </button>
@@ -252,10 +253,13 @@
       </div>
     </div>
 
-    <section class="collection-welcome">
+    <section class="collection-welcome text-center">
       <h2 class="heading mb-5">Cart</h2>
-      <div id="cart" class="row justify-content-center m-0"></div>
+      <div id="cart" class="row justify-content-center m-0 my-3"></div>
       <h4 id="total" class="text-center text-white"></h4>
+      <button id="checkout" type="button" class="btn btn-primary my-3" disabled>
+        Checkout
+      </button>
     </section>
 
     <footer class="py-3 text-center">

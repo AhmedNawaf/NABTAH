@@ -1,16 +1,15 @@
 const Cart = require('../models/Cart');
+const Product = require('../models/Product');
 
 exports.getCart = async (req, res) => {
-  const cart = await Cart.findOne({ userId: req.userId }).populate(
-    'products.productId'
-  );
+  const cart = await Cart.findOne({ userId: req.userId });
   if (!cart) {
     return res.status(401).json({
       message: 'Cart is empty',
     });
   }
   const total = cart.products.reduce(
-    (acc, curr) => acc + curr.productId.price,
+    (acc, curr) => acc + curr.price * curr.quantity,
     0
   );
 
@@ -25,13 +24,19 @@ exports.getCart = async (req, res) => {
 };
 
 exports.addToCart = async (req, res) => {
+  const { name, price, quantity, image, description } = req.body;
   const cart = await Cart.findOne({ userId: req.userId });
+
   if (!cart) {
     const newCart = new Cart({
       userId: req.userId,
       products: [
         {
-          productId: req.body.productId,
+          name,
+          price,
+          quantity,
+          image,
+          description,
         },
       ],
     });
@@ -45,16 +50,28 @@ exports.addToCart = async (req, res) => {
       },
     });
   }
-  if (cart.products.some((obj) => obj.productId == req.body.productId)) {
-    return res.status(400).json({
-      message: 'Product already in cart',
+
+  const product = cart.products.find((product) => product.name == name);
+
+  if (product) {
+    product.quantity += quantity;
+    await cart.save();
+    return res.status(200).json({
+      message: 'Product quantity updated',
+      cart: {
+        userId: cart.userId,
+        products: cart.products,
+      },
     });
   }
+
   cart.products.push({
-    productId: req.body.productId,
+    name,
+    price,
+    quantity,
+    image,
+    description,
   });
-  const { products } = await cart.populate('products.productId');
-  const total = products.reduce((acc, curr) => acc + curr.productId.price, 0);
 
   await cart.save();
   res.status(200).json({
@@ -62,7 +79,26 @@ exports.addToCart = async (req, res) => {
     cart: {
       userId: cart.userId,
       products: cart.products,
-      total: total.toFixed(2),
+    },
+  });
+};
+
+exports.modifyCart = async (req, res) => {
+  const { quantity } = req.body;
+  const cart = await Cart.findOne({ userId: req.userId });
+
+  cart.products = cart.products.map((product) => {
+    if (product._id == req.params.productId) {
+      product.quantity = quantity;
+    }
+    return product;
+  });
+  await cart.save();
+  return res.status(200).json({
+    message: 'Product quantity updated',
+    cart: {
+      userId: cart.userId,
+      products: cart.products,
     },
   });
 };
@@ -74,25 +110,34 @@ exports.removeFromCart = async (req, res) => {
       message: 'Cart is empty',
     });
   }
-  if (!cart.products.some((obj) => obj.productId == req.params.productId)) {
-    return res.status(400).json({
-      message: 'Product not in cart',
-    });
-  }
+
   cart.products = cart.products.filter(
-    (obj) => obj.productId != req.params.productId
+    (product) => product._id != req.params.productId
   );
-
-  const { products } = await cart.populate('products.productId');
-  const total = products.reduce((acc, curr) => acc + curr.productId.price, 0);
-
   await cart.save();
   res.status(200).json({
     message: 'Product removed from cart',
     cart: {
       userId: cart.userId,
       products: cart.products,
-      total: total.toFixed(2),
     },
   });
+};
+
+exports.checkout = async (req, res) => {
+  const { cartProducts } = req.body;
+  const cart = await Cart.findOne({ userId: req.userId });
+  for (const cartProduct of cartProducts) {
+    const product = await Product.findOne({ name: cartProduct.name });
+    const tempQuantity = product.quantity - cartProduct.quantity;
+    if (tempQuantity < 0) {
+      return res.status(400).json({
+        message: `${product.name} quantity is not enough`,
+      });
+    }
+    product.quantity = tempQuantity;
+    await product.save();
+  }
+  cart.products = [];
+  await cart.save();
 };

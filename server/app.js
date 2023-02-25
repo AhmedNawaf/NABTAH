@@ -1,13 +1,9 @@
-const createError = require('http-errors');
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const data = require('./data.json');
-const Product = require('./models/Product');
 const app = express();
-
+const multer = require('multer');
 const authRouter = require('./routes/auth');
 const productsRouter = require('./routes/products');
 const cartRouter = require('./routes/cart');
@@ -23,22 +19,11 @@ app.use('/api/products', productsRouter);
 app.use('/api/cart', cartRouter);
 
 app.use(function (req, res, next) {
-  next(createError(404));
+  res.status(404).json({ message: 'Not found' });
 });
 
-mongoose.connect(process.env.DB_URL).then(async () => {
-  const prodcuts = await Product.find();
-  if (prodcuts.length > 0) return;
-  data.products.forEach(async (product) => {
-    const newProduct = new Product({
-      name: product.name,
-      description: product.description,
-      price: product.price,
-      image: '/images/' + product.image,
-      category: product.category,
-    });
-    await newProduct.save();
-  });
+mongoose.connect(process.env.DB_URL).then(() => {
+  console.log('Connected to DB');
 });
 
 module.exports = app;

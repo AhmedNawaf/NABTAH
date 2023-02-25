@@ -76,9 +76,11 @@ class Login extends alert {
 
 class UserInfo {
   constructor() {
+    this.modalBody = document.querySelector('#userModal .modal-body');
     this.username = document.getElementById('user-name');
     this.email = document.getElementById('user-email');
     this.logout = document.getElementById('logout');
+    this.role = document.getElementById('user-role');
     this.modalLinker = document.getElementById('modalLinker');
   }
 
@@ -98,11 +100,19 @@ class UserInfo {
         Authorization: `Bearer ${token}`,
       },
     });
-    const { email } = payload.data;
+    const { email, isAdmin } = payload.data;
     const formattedEmail = email.split('@')[0];
     this.username.textContent = formattedEmail;
     this.email.textContent = email;
+    this.role.textContent = 'User';
+    if (isAdmin) {
+      this.role.textContent = 'Admin';
+      this.modalBody.innerHTML += `
+      <a href="../admin.html" class="btn btn-primary">Admin Panel</a>
+      `;
+    }
   }
+
   logoutUser() {
     localStorage.removeItem('token');
     window.location.reload();
