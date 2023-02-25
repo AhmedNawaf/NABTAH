@@ -71,7 +71,6 @@ class Admin {
 
   async renderProducts() {
     const products = await this.getProducts();
-    console.log(products);
     products.forEach((product) => {
       this.productsSection.innerHTML += `
     <div class="col-md-3">
@@ -90,7 +89,7 @@ class Admin {
           }">
         </div>
         <div class="mb-3">
-        <label class="form-label">Product Category</label>
+        <label class="form-label fw-bold">Category</label>
         <select class="form-select" name="category" value="${
           product.category
         }" required>

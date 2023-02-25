@@ -105,11 +105,16 @@ class UserInfo {
     this.username.textContent = formattedEmail;
     this.email.textContent = email;
     this.role.textContent = 'User';
+
     if (isAdmin) {
       this.role.textContent = 'Admin';
-      this.modalBody.innerHTML += `
-      <a href="../admin.html" class="btn btn-primary">Admin Panel</a>
-      `;
+
+      const adminLink = document.createElement('a');
+      adminLink.href = '../admin.html';
+      adminLink.classList.add('btn', 'btn-primary');
+      adminLink.textContent = 'Admin Panel';
+
+      this.modalBody.appendChild(adminLink);
     }
   }
 
